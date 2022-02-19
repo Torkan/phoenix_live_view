@@ -159,7 +159,7 @@ defmodule Phoenix.LiveView.JS do
   def push(%JS{} = js, event, opts) when is_binary(event) and is_list(opts) do
     opts =
       opts
-      |> validate_keys(:push, [:target, :loading, :page_loading, :value])
+      |> validate_keys(:push, [:target, :loading, :page_loading, :value, :in_flight])
       |> put_target()
       |> put_value()
 

@@ -714,6 +714,15 @@ export default class View {
     let disableWith = this.binding(PHX_DISABLE_WITH)
     if(opts.loading){ elements = elements.concat(DOM.all(document, opts.loading))}
 
+    if (opts.in_flight) {
+      opts.in_flight.forEach(entry => {
+        let elements = DOM.all(document, entry.el)
+        elements.forEach(el => {
+          el.classList.add(entry.class)
+        })
+      })
+    }
+
     elements.forEach(el => {
       el.classList.add(`phx-${event}-loading`)
       el.setAttribute(PHX_REF, newRef)

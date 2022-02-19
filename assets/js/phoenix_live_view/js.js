@@ -23,14 +23,14 @@ let JS = {
   // private
 
   // commands
-
+ 
   exec_dispatch(eventType, phxEvent, view, sourceEl, el, {to, event, detail}){
     DOM.dispatchEvent(el, event, detail)
   },
 
-  exec_push(eventType, phxEvent, view, sourceEl, el, args){
-    let {event, data, target, page_loading, loading, value} = args
-    let pushOpts = {loading, value, target, page_loading: !!page_loading}
+  exec_push(eventType, phxEvent, view, sourceEl, el, args){ 
+    let {event, data, target, page_loading, loading, in_flight, value} = args
+    let pushOpts = {loading, value, target, page_loading: !!page_loading, in_flight}
     let targetSrc = eventType === "change" ? sourceEl.form : sourceEl
     let phxTarget = target || targetSrc.getAttribute(view.binding("target")) || targetSrc
     view.withinTargets(phxTarget, (targetView, targetCtx) => {
