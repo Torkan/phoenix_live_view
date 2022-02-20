@@ -716,11 +716,14 @@ export default class View {
 
     if (opts.in_flight) {
       opts.in_flight.forEach(entry => {
-        let elements = DOM.all(document, entry.el)
-        elements.forEach(el => {
-          el.classList.add(entry.class)
-        })
-      })
+        if (entry.el && entry.class) {
+          let elements = DOM.all(document, entry.el)
+          elements.forEach(el => {
+            const classes = entry.class.split(' ')
+            el.classList.add(...classes)
+          })
+        }
+      }) 
     }
 
     elements.forEach(el => {
